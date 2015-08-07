@@ -17,5 +17,5 @@ clean:
 	rm -f $(OBJS) $(TARGETS)
 
 # blink
-bin/blink:
+bin/blink: src/blink.o
 	$(CXX) -o bin/blink src/blink.o $(LIBS)

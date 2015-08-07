@@ -12,8 +12,16 @@ void reset(int s) {
 	exit(0);
 }
 
-void isr() {
-	cout << "isr" << endl;
+void isr_INT_EDGE_BOTH() {
+	cout << "INT_EDGE_BOTH" << endl;
+}
+
+void isr_INT_EDGE_FALLING() {
+	cout << "INT_EDGE_FALLING" << endl;
+}
+
+void isr_EDGE_RISING() {
+	cout << "INT_EDGE_RISING" << endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -25,7 +33,9 @@ int main(int argc, char *argv[]) {
 		cout << "Error set reset function" << endl;
 	}
 
-	wiringPiISR(2, INT_EDGE_BOTH, isr);
+	wiringPiISR(2, INT_EDGE_BOTH, isr_INT_EDGE_BOTH);
+	wiringPiISR(2, INT_EDGE_FALLING, isr_INT_EDGE_FALLING);
+	wiringPiISR(2, INT_EDGE_RISING, isr_EDGE_RISING);
 
 	while (true) {
 		usleep(1000);

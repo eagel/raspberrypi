@@ -6,9 +6,17 @@
 
 using namespace std;
 
+void reset(int s) {
+	digitalWrite(0, LOW);
+}
+
 int main(int argc, char *argv[]) {
 	if (wiringPiSetup()) {
 		cout << "Error happens when initialize GPIO" << endl;
+	}
+
+	if (!signal(SIGINT, reset)) {
+		cout << "Error set reset function" << endl;
 	}
 
 	pinMode(1, PWM_OUTPUT);

@@ -1,10 +1,12 @@
 CXXFLAGS =	-O2 -g -Wall -fmessage-length=0 -Iinclude
 
 OBJS =	src/blink.o\
-		src/pwm.o
+		src/pwm.o\
+		src/isr.o
 
 TARGETS =	bin/blink\
-			bin/pwm
+			bin/pwm\
+			bin/isr
 
 LIBS = -lwiringPi
 
@@ -25,3 +27,7 @@ bin/blink: src/blink.o
 # pwm
 bin/pwm: src/pwm.o
 	$(CXX) -o bin/pwm src/pwm.o $(LIBS)
+	
+# isr
+bin/isr: src/isr.o
+	$(CXX) -o bin/isr src/isr.o $(LIBS)

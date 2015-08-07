@@ -1,13 +1,16 @@
 #include <iostream>
+#include <cstdlib>
 
 #include <unistd.h>
+#include <signal.h>
 
 #include <wiringPi.h>
 
 using namespace std;
 
 void reset(int s) {
-	digitalWrite(0, LOW);
+	pwmWrite(1, 0);
+	exit(0);
 }
 
 int main(int argc, char *argv[]) {
@@ -15,7 +18,7 @@ int main(int argc, char *argv[]) {
 		cout << "Error happens when initialize GPIO" << endl;
 	}
 
-	if (!signal(SIGINT, reset)) {
+	if (SIG_ERR == signal(SIGINT, reset)) {
 		cout << "Error set reset function" << endl;
 	}
 

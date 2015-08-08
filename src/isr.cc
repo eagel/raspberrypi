@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 		cout << "Error set reset function" << endl;
 	}
 
-	wiringPiISR(2, INT_EDGE_BOTH, isr);
+	wiringPiISR(2, INT_EDGE_FALLING, isr);
 
 	while (true) {
 		usleep(1000);
